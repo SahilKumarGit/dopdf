@@ -18,7 +18,8 @@ app.post("/downloadPDF", async (req, res) => {
     const {
       content,
       type,
-      fileName
+      fileName,
+      size
     } = req.body;
 
     // content validate here
