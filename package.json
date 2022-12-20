@@ -1,0 +1,25 @@
+{
+  "name": "dopdf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SahilKumarGit/dopdf.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SahilKumarGit/dopdf/issues"
+  },
+  "homepage": "https://github.com/SahilKumarGit/dopdf#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "4.18.2",
+    "puppeteer": "19.4.1"
+  },
+  "type": "module"
+}
