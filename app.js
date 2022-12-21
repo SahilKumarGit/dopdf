@@ -19,7 +19,8 @@ app.post("/downloadPDF", async (req, res) => {
       content,
       type,
       fileName,
-      size
+      size,
+      isBase64,
     } = req.body;
 
     // content validate here
@@ -86,6 +87,16 @@ app.post("/downloadPDF", async (req, res) => {
       });
       // Close the browser instance
       await browser.close();
+
+      //return base 64 text if isBase64 is true
+      if (typeof isBase64 == 'boolean' && isBase64) {
+        return req.status(200).send({
+          status: true,
+          data: {
+            base64: pdf.toString('base64')
+          }
+        })
+      }
 
       // streem here
       var readStream = new stream.PassThrough();
