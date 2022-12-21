@@ -90,7 +90,7 @@ app.post("/downloadPDF", async (req, res) => {
 
       //return base 64 text if isBase64 is true
       if (typeof isBase64 == 'boolean' && isBase64) {
-        return req.status(200).send({
+        return res.status(200).send({
           status: true,
           data: {
             base64: pdf.toString('base64')
