@@ -103,7 +103,7 @@ app.post("/downloadPDF", async (req, res) => {
 
       //return base 64 text if isBase64 is true
       if (response == 'BASE64') {
-        return req.status(200).send({
+        return res.status(200).send({
           status: true,
           data: {
             base64: pdf.toString('base64')
@@ -123,7 +123,7 @@ app.post("/downloadPDF", async (req, res) => {
           removeData(key)
         }, 120000);
 
-        return req.status(200).send({
+        return res.status(200).send({
           status: true,
           data: {
             url: sortUrlDomain + key
@@ -148,6 +148,7 @@ app.post("/downloadPDF", async (req, res) => {
       message: "Invalid type only accept (HTML_TEXT or URL)"
     });
   } catch (e) {
+    console.log(e)
     return res.status(500).send({
       status: false,
       message: e.message
@@ -163,8 +164,14 @@ app.get("/download/:key", (req, res) => {
     })
     const temp = tempStorage[req.params.key]
     delete tempStorage[req.params.key];
-    res.status(200).download(temp);
+
+    res.writeHead(200, {
+      'Content-Disposition': `attachment; filename="${req.params.key}.pdf"`,
+      'Content-Type': 'application/pdf',
+    })
+    res.end(temp)
   } catch (e) {
+    console.log(e)
     res.status(500).send({
       status: false,
       messahe: e.message
@@ -182,7 +189,7 @@ app.listen(PORT, (err) => {
 
 
 // ---------------------- --------------------------- -------------------
-const removeData = (key) => {
+const removeData = async (key) => {
   console.log(key, 'deleted!')
   delete tempStorage[key];
 }
