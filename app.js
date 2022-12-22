@@ -103,7 +103,7 @@ app.post("/downloadPDF", async (req, res) => {
 
       //return base 64 text if isBase64 is true
       if (response == 'BASE64') {
-        return req.status(200).send({
+        return res.status(200).send({
           status: true,
           data: {
             base64: pdf.toString('base64')
@@ -123,7 +123,7 @@ app.post("/downloadPDF", async (req, res) => {
           removeData(key)
         }, 120000);
 
-        return req.status(200).send({
+        return res.status(200).send({
           status: true,
           data: {
             url: sortUrlDomain + key
