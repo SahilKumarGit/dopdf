@@ -10,9 +10,6 @@ import {
   responseType
 } from "./other.js";
 import stream from "stream";
-import {
-  setTimeout
-} from "timers/promises";
 
 dotenv.config();
 
