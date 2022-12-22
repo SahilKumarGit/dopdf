@@ -158,10 +158,6 @@ app.post("/downloadPDF", async (req, res) => {
 
 app.get("/download/:key", (req, res) => {
   try {
-    if (!tempStorage[req.params.key]) return res.status(404).send({
-      status: false,
-      messahe: 'Invalid url!'
-    })
     const temp = tempStorage[req.params.key]
     delete tempStorage[req.params.key];
 
